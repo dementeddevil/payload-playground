@@ -1,22 +1,23 @@
 import Link from 'next/link'
 
 export default function LatestNews(props: any) {
+  console.log('latest artists', props);
   return (
     <section className="section">
       <div className="section__header">
         <div className="section__title">
-          <h2>Latest News.</h2>
-          <p>Our lastest news from around the globe. </p>
+          <h2>{props.title}</h2>
+          <p>{props.description}</p>
         </div>
       </div>
       <div className="section__content">
-        <ul className="cards-list">
-          {props.posts.map((item: any) => (
+        <ul className="cards-list cards-list--square">
+          {props.artists.artists.map((item: any) => (
             <li className="card" key={item.id}>
-              <Link href={`/posts/${item.slug}`}>
+              <Link href={`/artists/${item.slug}`}>
                 <div
                   className="card__bg"
-                  style={{ ['backgroundImage' as any]: `url(${item.thumbnailImage.url})` }}
+                  style={{ ['background-image' as any]: `url(${item.thumbnailImage.url})` }}
                 ></div>
                 <div className="card__content">
                   <h3>{item.title}</h3>

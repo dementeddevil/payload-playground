@@ -106,7 +106,7 @@ export interface Config {
   };
   globals: {};
   globalsSelect: {};
-  locale: null;
+  locale: 'en' | 'fr';
   user: User & {
     collection: 'users';
   };
@@ -146,6 +146,7 @@ export interface UserAuthOperations {
 export interface Page {
   id: string;
   title: string;
+  test: string;
   hero: {
     type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
     richText?: {
@@ -189,7 +190,7 @@ export interface Page {
       | null;
     media?: (string | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
+  layout?: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[] | null;
   meta?: {
     title?: string | null;
     /**
@@ -351,7 +352,9 @@ export interface Media {
  */
 export interface User {
   id: string;
-  name?: string | null;
+  firstName: string;
+  lastName: string;
+  roles?: ('admin' | 'editor' | 'localEditor')[] | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -790,9 +793,21 @@ export interface Homepage {
         id?: string | null;
       }[]
     | null;
-  news?: (string | Post)[] | null;
-  video?: string | null;
-  artists?: (string | Artist)[] | null;
+  newsSection: {
+    title: string;
+    description: string;
+    news?: (string | Post)[] | null;
+  };
+  videoSection: {
+    title: string;
+    description: string;
+    video?: string | null;
+  };
+  artistsSection: {
+    title: string;
+    description: string;
+    artists?: (string | Artist)[] | null;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -1070,6 +1085,7 @@ export interface PayloadMigration {
  */
 export interface PagesSelect<T extends boolean = true> {
   title?: T;
+  test?: T;
   hero?:
     | T
     | {
@@ -1381,7 +1397,9 @@ export interface CategoriesSelect<T extends boolean = true> {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
-  name?: T;
+  firstName?: T;
+  lastName?: T;
+  roles?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -1407,9 +1425,27 @@ export interface HomepageSelect<T extends boolean = true> {
         image?: T;
         id?: T;
       };
-  news?: T;
-  video?: T;
-  artists?: T;
+  newsSection?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        news?: T;
+      };
+  videoSection?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        video?: T;
+      };
+  artistsSection?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        artists?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }

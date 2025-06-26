@@ -14,6 +14,7 @@ export const Homepage: CollectionConfig = {
     {
       name: 'title',
       type: 'text',
+      localized: true,
     },
     {
       name: 'hero',
@@ -23,6 +24,7 @@ export const Homepage: CollectionConfig = {
           name: 'title',
           type: 'text',
           required: true,
+          localized: true,
         },
         {
           name: 'link',
@@ -43,21 +45,75 @@ export const Homepage: CollectionConfig = {
       ],
     },
     {
-      name: 'news',
-      type: 'relationship',
-      relationTo: 'posts',
-      hasMany: true,
+      name: 'newsSection',
+      type: 'group',
+      fields:[
+        {
+          name: 'title',
+          type: 'text',
+          required: true,
+          localized: true,
+        },
+        {
+          name: 'description',
+          type: 'textarea',
+          required: true,
+          localized: true,
+        },
+        {
+        name: 'news',
+        type: 'relationship',
+        relationTo: 'posts',
+        hasMany: true,
+      },
+    ]
     },
     {
-      name: 'video',
-      type: 'text',
-      label: 'Video Embed',
+      name: 'videoSection',
+      type: 'group',
+      fields:[
+        {
+          name: 'title',
+          type: 'text',
+          required: true,
+          localized: true,
+        },
+        {
+          name: 'description',
+          type: 'textarea',
+          required: true,
+          localized: true,
+        },
+        {
+          name: 'video',
+          type: 'text',
+          label: 'Video Embed',
+        },
+    ]
     },
     {
-      name: 'artists',
-      type: 'relationship',
-      relationTo: 'artists',
-      hasMany: true,
+      name: 'artistsSection',
+      type: 'group',
+      fields:[
+        {
+          name: 'title',
+          type: 'text',
+          required: true,
+          localized: true,
+        },
+        {
+          name: 'description',
+          type: 'textarea',
+          required: true,
+          localized: true,
+        },
+        {
+          name: 'artists',
+          type: 'relationship',
+          relationTo: 'artists',
+          hasMany: true,
+        },
+    ]
     },
   ],
 }

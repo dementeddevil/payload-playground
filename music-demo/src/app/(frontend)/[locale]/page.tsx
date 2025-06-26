@@ -6,9 +6,9 @@ import LatestNews from './components/LatestNews'
 import ShowReel from './components/ShowReel'
 import FeaturedArtists from './components/FeaturedArtists'
 
-export default async function Homepage() {
+export default async function Homepage({ params }: { params: { locale: string} }) {
+  const { locale } = await params;
   const payload = await getPayload({ config: configPromise })
-
   const homepage = await payload.find({
     collection: 'homepage',
     populate: {
@@ -27,17 +27,20 @@ export default async function Homepage() {
         slug: true,
       },
     },
+    locale: locale, // Pass the locale here
+  fallbackLocale: 'en', // Optional: specify fallback
   })
   console.log(homepage)
   const slides: any = homepage.docs[0]?.hero
-  const posts: any = homepage.docs[0]?.news
-  const artists: any = homepage.docs[0]?.artists
+  const posts: any = homepage.docs[0]?.newsSection
+  const video: any = homepage.docs[0]?.videoSection
+  const artists: any = homepage.docs[0]?.artistsSection
 
   return (
     <>
       <Hero slides={slides} />
       <LatestNews posts={posts} />
-      <ShowReel />
+      <ShowReel video={video}/>
       <FeaturedArtists artists={artists} />
     </>
   )
