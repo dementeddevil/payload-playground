@@ -64,6 +64,37 @@ export const Users: CollectionConfig = {
         },
       ]
     },
+    {
+      name: 'locales',
+      // Save this field to JWT so we can use from `req.user`
+      saveToJWT: true,
+      type: 'select',
+      hasMany: true,
+      defaultValue: ['en'],
+      access: {
+        // Only admins can create or update a value for this field
+        create: isAdminFieldLevel,
+        update: isAdminFieldLevel,
+      },
+      options: [
+        {
+          label: 'English',
+          value: 'en',
+        },
+        {
+          label: 'French',
+          value: 'fr',
+        },
+        {
+          label: 'German',
+          value: 'de',
+        },
+        {
+          label: 'Spanish',
+          value: 'es',
+        }
+      ],
+    },
   ],
   timestamps: true,
 }

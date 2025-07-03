@@ -9,6 +9,7 @@ export const revalidatePost: CollectionAfterChangeHook<Post> = ({
   previousDoc,
   req: { payload, context },
 }) => {
+  console.log('what')
   if (!context.disableRevalidate) {
     if (doc._status === 'published') {
       const path = `/posts/${doc.slug}`

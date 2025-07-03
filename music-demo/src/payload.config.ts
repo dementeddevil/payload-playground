@@ -33,6 +33,14 @@ export default buildConfig({
         label: 'French',
         code: 'fr',
       },
+      {
+        label: 'German',
+        code: 'de',
+      },
+      {
+        label: 'Spanish',
+        code: 'es',
+      },
     ],
     defaultLocale: 'en',
     fallback: true,
@@ -80,6 +88,7 @@ export default buildConfig({
   }),
   collections: [Pages, Posts, Artists, Media, Categories, Users, Homepage],
   cors: [getServerSideURL()].filter(Boolean),
+  globals: [Header, Footer],
   plugins: [
     ...plugins,
     // storage-adapter-placeholder

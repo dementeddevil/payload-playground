@@ -1,7 +1,21 @@
 import type { CollectionConfig } from 'payload'
 
+import { isAdmin } from '@/access/isAdmin'
+import { authenticatedOrPublished } from '@/access/authenticatedOrPublished'
+import { isLocalized } from '@/access/isLocalized'
+
 export const Homepage: CollectionConfig = {
   slug: 'homepage',
+  access: {
+    // Only admins can create
+    create: isAdmin,
+    // All can view if published
+    read: authenticatedOrPublished,
+    // Only admins can update
+    update: isLocalized,
+    // Only admins can delete
+    delete: isLocalized,
+  },
   admin: {
     pagination: {
       defaultLimit: 1,

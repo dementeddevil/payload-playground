@@ -6,22 +6,22 @@ import RichText from '@/components/RichText'
 import { BiChevronLeft } from 'react-icons/bi'
 import Link from 'next/link'
 
-export default async function Artist({ params }: { params: { slug: string } }) {
-  const { slug } = params
+export default async function Post({ params }: { params: { slug: string } }) {
+  const { slug } = await params;
   const payload = await getPayload({ config: configPromise })
 
-  const artists = await payload.find({
+  const posts = await payload.find({
     collection: 'posts',
     where: {
       slug: { equals: slug },
     },
   })
 
-  if (artists.docs.length === 0) {
+  if (posts.docs.length === 0) {
     return notFound()
   }
 
-  const postData = artists.docs[0]
+  const postData = posts.docs[0]
   console.log(postData)
 
   return (

@@ -25,6 +25,7 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
+
 import { slugField } from '@/fields/slug'
 import { isAdmin } from '@/access/isAdmin'
 import { isAdminOrHasSiteAccess } from '@/access/isAdminOrHasSiteAccess'
@@ -47,7 +48,6 @@ export const Posts: CollectionConfig<'posts'> = {
   defaultPopulate: {
     title: true,
     slug: true,
-    categories: true,
     meta: {
       image: true,
       description: true,
@@ -56,20 +56,21 @@ export const Posts: CollectionConfig<'posts'> = {
   admin: {
     defaultColumns: ['title', 'slug', 'updatedAt'],
     livePreview: {
-      url: ({ data, req }) => {
+      url: ({ data, req, locale }) => {
         const path = generatePreviewPath({
           slug: typeof data?.slug === 'string' ? data.slug : '',
           collection: 'posts',
+          locale: req.locale,
           req,
         })
-
-        return path
+        return `${req.origin}/${req.locale}${path}`
       },
     },
     preview: (data, { req }) =>
       generatePreviewPath({
         slug: typeof data?.slug === 'string' ? data.slug : '',
         collection: 'posts',
+        locale: req.locale,
         req,
       }),
     useAsTitle: 'title',
