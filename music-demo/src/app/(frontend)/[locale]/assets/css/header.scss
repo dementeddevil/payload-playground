@@ -1,6 +1,6 @@
 .site-header {
   background: var(--background);
-  position: fixed;
+  position: sticky;
   float: left;
   top: 0px;
   left: 0px;
@@ -17,7 +17,6 @@
     transform: rotate(-90deg);
     transform-origin: top left;
     z-index: 2;
-    //filter: saturate(0) brightness(0) invert(1);
     img {
       height: 56px;
       width: auto;
@@ -27,7 +26,7 @@
 
 .primary-nav {
   &__toggle {
-    background: #f7f7f7;
+    background: var(--panel);
     border: none;
     border-radius: 50%;
     cursor: pointer;
@@ -40,6 +39,7 @@
     margin: 20px auto 0;
     position: relative;
     z-index: 2;
+    color: var(--foreground);
 
     svg {
       width: 36px;
@@ -53,7 +53,7 @@
     }
   }
   &__bg {
-    background: #fff;
+    background: var(--background);
     left: 0px;
     position: fixed;
     top: 0px;

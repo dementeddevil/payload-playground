@@ -35,10 +35,6 @@ export const PostClientPage: React.FC<PostClientPageProps> = ({ post: initialPos
           {/* Using `post.heroImage.url` safely, assuming heroImage might not be populated */}
           <img src={typeof post.heroImage === 'object' ? post.heroImage.url : ''} alt={typeof post.heroImage === 'object' ? post.heroImage.alt : ''} />
         </div>
-        <div className="article__header-content">
-          <h1>{post?.title}</h1>
-          <p>{post?.excerpt}</p>
-        </div>
       </header>
       <section className="article__content rte">
         <RichText data={post?.content} enableGutter={false} />

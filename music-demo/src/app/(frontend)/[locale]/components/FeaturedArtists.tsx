@@ -1,13 +1,13 @@
 import Link from 'next/link'
 
-export default function LatestNews(props: any) {
+export default function FeaturedArtist(props: any) {
   console.log('latest artists', props);
   return (
     <section className="section">
       <div className="section__header">
         <div className="section__title">
-          <h2>{props.title}</h2>
-          <p>{props.description}</p>
+          <h2>{props.artists.title}</h2>
+          <p>{props.artists.description}</p>
         </div>
       </div>
       <div className="section__content">
@@ -17,7 +17,7 @@ export default function LatestNews(props: any) {
               <Link href={`/artists/${item.slug}`}>
                 <div
                   className="card__bg"
-                  style={{ ['background-image' as any]: `url(${item.thumbnailImage.url})` }}
+                  style={{ ['backgroundImage' as any]: `url(${item.thumbnailImage.url})` }}
                 ></div>
                 <div className="card__content">
                   <h3>{item.title}</h3>

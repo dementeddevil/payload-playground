@@ -20,9 +20,10 @@
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.6.1",
+    "@next/third-parties": "^15.3.4",
     "@payloadcms/admin-bar": "3.43.0",
     "@payloadcms/db-mongodb": "3.43.0",
-    "@payloadcms/live-preview-react": "^3.44.0",
+    "@payloadcms/live-preview-react": "^3.43.0",
     "@payloadcms/next": "3.43.0",
     "@payloadcms/payload-cloud": "3.43.0",
     "@payloadcms/plugin-form-builder": "3.43.0",

@@ -1,9 +1,8 @@
 .article {
-  background: #fff;
-  border-left: 1px solid #f7f7f7;
+  background: var(--panel);
   position: relative;
   &__header {
-    background: #fff;
+    background: var(--panel);
     display: flex;
     align-items: center;
   }
@@ -18,7 +17,7 @@
   }
   &__header-content {
     width: 40%;
-    background: #fff;
+    background: var(--panel);
     transform: translateX(-60px);
     display: flex;
     align-items: left;
@@ -43,7 +42,7 @@
 .article--hero {
   
   .article__content {
-    background: #fff;
+    background: var(--panel);
     transform: translateY(-80px);
   }
   .article__header {
@@ -61,7 +60,7 @@
 }
 
 .article-back {
-  background: #f7f7f7;
+  background: var(--panel);;
   border: none;
   border-radius: 50%;
   cursor: pointer;

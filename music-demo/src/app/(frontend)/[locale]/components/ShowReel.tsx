@@ -2,7 +2,7 @@ export default function ShowReel(props: any) {
   console.log('showreel', props);
 
   return (
-    <section className="section section--white">
+    <section className="section section--alt">
       <div className="section__header">
         <div className="section__title">
           <h2>{props.video.title}</h2>

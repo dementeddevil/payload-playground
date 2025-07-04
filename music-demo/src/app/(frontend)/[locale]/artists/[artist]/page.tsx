@@ -2,9 +2,9 @@ import { getPayload } from 'payload'
 import { notFound } from 'next/navigation'
 import configPromise from '@payload-config'
 import type { Artist } from '@/payload-types'
-import RichText from '@/components/RichText'
 import Link from 'next/link'
 import { BiChevronLeft } from 'react-icons/bi'
+import { RenderBlocks } from '@/blocks'
 
 export default async function Artist({ params }: { params: { artist: string } }) {
   const { artist } = params
@@ -39,9 +39,10 @@ export default async function Artist({ params }: { params: { artist: string } })
           <p>{artistData?.intro}</p>
         </div>
       </header>
-      <section className="article__content rte">
-        <RichText data={artistData?.content} enableGutter={false} />
-      </section>
+      <div className="article__content">
+        <RenderBlocks blocks={artistData?.modules} />
+        {/* <RichText data={artistData?.content} enableGutter={false} /> */}
+      </div>
     </article>
   )
 }
