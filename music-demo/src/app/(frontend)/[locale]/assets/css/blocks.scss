@@ -7,23 +7,23 @@
   font-style: italic;
   font-weight: 300;
   line-height: 1.2em;
-  padding: 60px;
+  padding: 60px 120px;
   position: relative;
   svg:first-of-type {
-    height: 120px;
-    left: -80px;
+    height: 100px;
+    left: 0px;
     opacity: 0.05;
     position: absolute;
     top: 0;
-    width: 120px;
+    width: 100px;
   }
   svg:last-of-type {
     bottom: 0;
-    height: 120px;
+    height: 100px;
     opacity: 0.05;
     position: absolute;
-    right: -80px;
-    width: 120px;
+    right: 0px;
+    width: 100px;
   }
   &--right {
     text-align: right;

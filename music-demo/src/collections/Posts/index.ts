@@ -24,6 +24,10 @@ import {
 } from '@payloadcms/plugin-seo/fields'
 
 import { slugField } from '@/fields/slug'
+import { Quote } from '@/blocks/Quote/config'
+import { Image } from '@/blocks/Image/config'
+import { RichText } from '@/blocks/RichText/config'
+import { Oembed } from '@/blocks/Oembed/config'
 import { isAdmin } from '@/access/isAdmin'
 import { isAdminOrHasSiteAccess } from '@/access/isAdminOrHasSiteAccess'
 
@@ -94,21 +98,9 @@ export const Posts: CollectionConfig<'posts'> = {
               relationTo: 'media',
             },
             {
-              name: 'content',
-              type: 'richText',
-              editor: lexicalEditor({
-                features: ({ rootFeatures }) => {
-                  return [
-                    ...rootFeatures,
-                    HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
-                    FixedToolbarFeature(),
-                    InlineToolbarFeature(),
-                    HorizontalRuleFeature(),
-                  ]
-                },
-              }),
-              label: false,
-              required: true,
+              name: 'modules',
+              type: 'blocks',
+              blocks:[Quote, Image, RichText, Oembed]
             },
           ],
           label: 'Content',

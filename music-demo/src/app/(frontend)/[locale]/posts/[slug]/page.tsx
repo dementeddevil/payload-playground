@@ -23,7 +23,6 @@ export default async function Post({ params }: { params: { slug: string } }) {
   }
 
   const post = posts.docs[0]
-  console.log(post)
 
   return (
     <article className="article article--hero">
@@ -37,7 +36,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
         </div>
       </header>
       <section className="article__content rte">
-        <RichTextContent data={post?.content} enableGutter={false} />
+        <RenderBlocks blocks={post?.modules} />
       </section>
     </article>
   )

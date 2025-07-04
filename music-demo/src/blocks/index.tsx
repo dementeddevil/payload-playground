@@ -1,7 +1,7 @@
 import { QuoteBlock } from '@/blocks/Quote/Component'
 import { ImageBlock } from '@/blocks/Image/Component'
 import { RichTextBlock } from '@/blocks/RichText/Component'
-import {Artist} from '@/payload-types'
+import {Artist, Post} from '@/payload-types'
 import { Fragment } from 'react'
 import { OembedBlock } from './Oembed/Component'
 
@@ -13,7 +13,7 @@ const blockComponents = {
 }
 
 export const RenderBlocks: React.FC<{
-  blocks: Artist['modules']
+  blocks: [Artist['modules'], Post['modules']]
 }> = (props) => {
   const {blocks} = props
 

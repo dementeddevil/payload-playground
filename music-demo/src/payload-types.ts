@@ -221,21 +221,7 @@ export interface Post {
   excerpt: string;
   thumbnailImage?: (string | null) | Media;
   heroImage?: (string | null) | Media;
-  content: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
+  modules?: (Quote | Image | RichText | Oembed)[] | null;
   meta?: {
     title?: string | null;
     /**
@@ -352,52 +338,6 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
- */
-export interface User {
-  id: string;
-  firstName: string;
-  lastName: string;
-  roles?: ('admin' | 'editor' | 'localEditor')[] | null;
-  locales?: ('en' | 'fr' | 'de' | 'es')[] | null;
-  updatedAt: string;
-  createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  password?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "artists".
- */
-export interface Artist {
-  id: string;
-  title: string;
-  intro?: string | null;
-  thumbnailImage?: (string | null) | Media;
-  heroImage?: (string | null) | Media;
-  modules?: (Quote | Image | RichText | Oembed)[] | null;
-  publishedAt?: string | null;
-  authors?: (string | User)[] | null;
-  populatedAuthors?:
-    | {
-        id?: string | null;
-        name?: string | null;
-      }[]
-    | null;
-  slug?: string | null;
-  slugLock?: boolean | null;
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "Quote".
  */
 export interface Quote {
@@ -450,6 +390,52 @@ export interface Oembed {
   id?: string | null;
   blockName?: string | null;
   blockType: 'oembed';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users".
+ */
+export interface User {
+  id: string;
+  firstName: string;
+  lastName: string;
+  roles?: ('admin' | 'editor' | 'localEditor')[] | null;
+  locales?: ('en' | 'fr' | 'de' | 'es')[] | null;
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  password?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "artists".
+ */
+export interface Artist {
+  id: string;
+  title: string;
+  intro?: string | null;
+  thumbnailImage?: (string | null) | Media;
+  heroImage?: (string | null) | Media;
+  modules?: (Quote | Image | RichText | Oembed)[] | null;
+  publishedAt?: string | null;
+  authors?: (string | User)[] | null;
+  populatedAuthors?:
+    | {
+        id?: string | null;
+        name?: string | null;
+      }[]
+    | null;
+  slug?: string | null;
+  slugLock?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1000,37 +986,6 @@ export interface PostsSelect<T extends boolean = true> {
   excerpt?: T;
   thumbnailImage?: T;
   heroImage?: T;
-  content?: T;
-  meta?:
-    | T
-    | {
-        title?: T;
-        image?: T;
-        description?: T;
-      };
-  publishedAt?: T;
-  authors?: T;
-  populatedAuthors?:
-    | T
-    | {
-        id?: T;
-        name?: T;
-      };
-  slug?: T;
-  slugLock?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  _status?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "artists_select".
- */
-export interface ArtistsSelect<T extends boolean = true> {
-  title?: T;
-  intro?: T;
-  thumbnailImage?: T;
-  heroImage?: T;
   modules?:
     | T
     | {
@@ -1038,6 +993,13 @@ export interface ArtistsSelect<T extends boolean = true> {
         image?: T | ImageSelect<T>;
         richText?: T | RichTextSelect<T>;
         oembed?: T | OembedSelect<T>;
+      };
+  meta?:
+    | T
+    | {
+        title?: T;
+        image?: T;
+        description?: T;
       };
   publishedAt?: T;
   authors?: T;
@@ -1089,6 +1051,37 @@ export interface OembedSelect<T extends boolean = true> {
   URL?: T;
   id?: T;
   blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "artists_select".
+ */
+export interface ArtistsSelect<T extends boolean = true> {
+  title?: T;
+  intro?: T;
+  thumbnailImage?: T;
+  heroImage?: T;
+  modules?:
+    | T
+    | {
+        quote?: T | QuoteSelect<T>;
+        image?: T | ImageSelect<T>;
+        richText?: T | RichTextSelect<T>;
+        oembed?: T | OembedSelect<T>;
+      };
+  publishedAt?: T;
+  authors?: T;
+  populatedAuthors?:
+    | T
+    | {
+        id?: T;
+        name?: T;
+      };
+  slug?: T;
+  slugLock?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
