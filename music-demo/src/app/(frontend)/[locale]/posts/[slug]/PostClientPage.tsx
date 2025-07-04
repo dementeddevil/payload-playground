@@ -7,6 +7,7 @@ import RichText from '@/components/RichText'
 import { BiChevronLeft } from 'react-icons/bi'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import { RenderBlocks } from '@/blocks'
 
 interface PostClientPageProps {
   post: PostType | null | undefined
@@ -37,7 +38,7 @@ export const PostClientPage: React.FC<PostClientPageProps> = ({ post: initialPos
         </div>
       </header>
       <section className="article__content rte">
-        <RichText data={post?.content} enableGutter={false} />
+        <RenderBlocks blocks={post?.modules} />
       </section>
     </article>
   )
