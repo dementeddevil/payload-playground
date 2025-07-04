@@ -1,14 +1,13 @@
-import { getPayload } from 'payload'
-import configPromise from '@payload-config'
 import type { Homepage } from '@/payload-types'
 import Hero from './components/Hero'
 import LatestNews from './components/LatestNews'
 import ShowReel from './components/ShowReel'
 import FeaturedArtists from './components/FeaturedArtists'
+import { getPayloadClient } from '@/payload/getPayloadClient'
 
 export default async function Homepage({ params }: { params: { locale: string} }) {
   const { locale } = await params;
-  const payload = await getPayload({ config: configPromise })
+  const payload = await getPayloadClient()
   const homepage = await payload.find({
     collection: 'homepage',
     populate: {

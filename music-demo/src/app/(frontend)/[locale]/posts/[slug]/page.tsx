@@ -1,15 +1,13 @@
-import { getPayload } from 'payload'
 import { notFound } from 'next/navigation'
-import configPromise from '@payload-config'
 import type { Post } from '@/payload-types'
 import Link from 'next/link'
 import { BiChevronLeft } from 'react-icons/bi'
 import { RenderBlocks } from '@/blocks'
-import RichTextContent from '@/components/RichText'
+import { getPayloadClient } from '@/payload/getPayloadClient'
 
 export default async function Post({ params }: { params: { slug: string } }) {
   const { slug } = params
-  const payload = await getPayload({ config: configPromise })
+  const payload = await getPayloadClient()
 
   const posts = await payload.find({
     collection: 'posts',

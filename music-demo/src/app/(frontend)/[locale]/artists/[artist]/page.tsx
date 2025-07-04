@@ -5,10 +5,11 @@ import type { Artist } from '@/payload-types'
 import Link from 'next/link'
 import { BiChevronLeft } from 'react-icons/bi'
 import { RenderBlocks } from '@/blocks'
+import { getPayloadClient } from '@/payload/getPayloadClient'
 
 export default async function Artist({ params }: { params: { artist: string } }) {
   const { artist } = params
-  const payload = await getPayload({ config: configPromise })
+    const payload = await getPayloadClient()
   console.log(artist)
 
   const artists = await payload.find({

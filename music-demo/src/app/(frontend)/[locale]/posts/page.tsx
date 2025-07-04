@@ -9,12 +9,13 @@ import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import React from 'react'
 import PageClient from './page.client'
+import { getPayloadClient } from '@/payload/getPayloadClient'
 
 export const dynamic = 'force-static'
 export const revalidate = 600
 
 export default async function Page() {
-  const payload = await getPayload({ config: configPromise })
+  const payload = await getPayloadClient()
 
   const posts = await payload.find({
     collection: 'posts',
@@ -34,7 +35,7 @@ export default async function Page() {
       <div className="section__header">
         <div className="section__title section__title--top">
           <h2>Latest News.</h2>
-          <p>Our lastest news from around the globe. </p>
+          <p>Our latest news from around the globe. </p>
         </div>
       </div>
       <div className="section__content">

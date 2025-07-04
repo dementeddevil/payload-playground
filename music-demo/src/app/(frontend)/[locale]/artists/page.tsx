@@ -10,12 +10,13 @@ import React from 'react'
 import PageClient from './page.client'
 
 import Link from 'next/link'
+import { getPayloadClient } from '@/payload/getPayloadClient'
 
 export const dynamic = 'force-static'
 export const revalidate = 600
 
 export default async function Page() {
-  const payload = await getPayload({ config: configPromise })
+  const payload = await getPayloadClient()
 
   const posts = await payload.find({
     collection: 'artists',
