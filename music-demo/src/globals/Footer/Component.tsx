@@ -4,9 +4,10 @@ import Link from 'next/link';
 
 const payload = await getPayload({ config });
 
-export default async function GlobalFooter() {
+export default async function GlobalFooter(props: any) {
   const globalData = await payload.findGlobal({
-    slug: 'footer'
+    slug: 'footer',
+    locale: props.lang
   });
 
   const footerData = globalData;

@@ -11,11 +11,12 @@ import PageClient from './page.client'
 
 import Link from 'next/link'
 import { getPayloadClient } from '@/payload/getPayloadClient'
+import GlobalFooter from '@/globals/Footer/Component'
 
 export const dynamic = 'force-static'
 export const revalidate = 600
 
-export default async function Page() {
+export default async function Page({ params }: { params: { locale: string} }) {
   const payload = await getPayloadClient()
 
   const posts = await payload.find({
@@ -33,6 +34,7 @@ export default async function Page() {
   })
 
   return (
+    <>
     <section className="section">
       <div className="section__header">
         <div className="section__title section__title--top">
@@ -71,6 +73,8 @@ export default async function Page() {
         </ul>
       </div>
     </section>
+    <GlobalFooter lang={params.locale} />
+    </>
   )
 }
 

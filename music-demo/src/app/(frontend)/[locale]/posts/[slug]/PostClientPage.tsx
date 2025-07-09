@@ -9,6 +9,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { RenderBlocks } from '@/blocks'
 
+
 interface PostClientPageProps {
   post: PostType | null | undefined
 }
@@ -27,6 +28,7 @@ export const PostClientPage: React.FC<PostClientPageProps> = ({ post: initialPos
   }
 
   return (
+
     <article className="article article--hero">
       <Link className="article-back" href="/posts/">
         <BiChevronLeft />
@@ -41,5 +43,7 @@ export const PostClientPage: React.FC<PostClientPageProps> = ({ post: initialPos
         <RenderBlocks blocks={post?.modules} />
       </section>
     </article>
+    
+   
   )
 }

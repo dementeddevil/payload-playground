@@ -6,8 +6,9 @@ import Link from 'next/link'
 import { BiChevronLeft } from 'react-icons/bi'
 import { RenderBlocks } from '@/blocks'
 import { getPayloadClient } from '@/payload/getPayloadClient'
+import GlobalFooter from '@/globals/Footer/Component'
 
-export default async function Artist({ params }: { params: { artist: string } }) {
+export default async function Artist({ params }: { params: { artist: string, locale: string } }) {
   const { artist } = params
     const payload = await getPayloadClient()
   console.log(artist)
@@ -27,23 +28,27 @@ export default async function Artist({ params }: { params: { artist: string } })
   console.log(artistData)
 
   return (
-    <article className="article">
-      <Link className="article-back" href="/artists/">
-        <BiChevronLeft />
-      </Link>
-      <header className="article__header">
-        <div className="article__header-media">
-          <img src={artistData?.heroImage?.url} />
+    <>
+      <article className="article">
+        <Link className="article-back" href="/artists/">
+          <BiChevronLeft />
+        </Link>
+        <header className="article__header">
+          <div className="article__header-media">
+            <img src={artistData?.heroImage?.url} />
+          </div>
+          <div className="article__header-content">
+            <h1>{artistData?.title}</h1>
+            <p>{artistData?.intro}</p>
+          </div>
+        </header>
+        <div className="article__content">
+          <RenderBlocks blocks={artistData?.modules} />
+          {/* <RichText data={artistData?.content} enableGutter={false} /> */}
         </div>
-        <div className="article__header-content">
-          <h1>{artistData?.title}</h1>
-          <p>{artistData?.intro}</p>
-        </div>
-      </header>
-      <div className="article__content">
-        <RenderBlocks blocks={artistData?.modules} />
-        {/* <RichText data={artistData?.content} enableGutter={false} /> */}
-      </div>
-    </article>
+      </article>
+      <GlobalFooter lang={params.locale} />
+    </>
+    
   )
 }

@@ -4,6 +4,7 @@ import LatestNews from './components/LatestNews'
 import ShowReel from './components/ShowReel'
 import FeaturedArtists from './components/FeaturedArtists'
 import { getPayloadClient } from '@/payload/getPayloadClient'
+import GlobalFooter from '@/globals/Footer/Component'
 
 export default async function Homepage({ params }: { params: { locale: string} }) {
   const { locale } = await params;
@@ -41,6 +42,7 @@ export default async function Homepage({ params }: { params: { locale: string} }
       <LatestNews posts={posts} />
       <ShowReel video={video}/>
       <FeaturedArtists artists={artists} />
+      <GlobalFooter lang={params.locale} />
     </>
   )
 }

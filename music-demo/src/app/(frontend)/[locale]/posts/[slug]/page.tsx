@@ -5,6 +5,7 @@ import type { User } from '@/payload-types'
 import { cookies } from 'next/headers'
 import { PostClientPage } from './PostClientPage'
 import { getPayloadClient } from '@/payload/getPayloadClient'
+import GlobalFooter from '@/globals/Footer/Component'
 
 export const dynamic = 'force-dynamic'
 
@@ -54,5 +55,11 @@ export default async function Post({ params }: { params: { slug: string; locale:
 
   const post = posts.docs[0]
 
-  return <PostClientPage post={post} />
+  return (
+    <>
+    <PostClientPage post={post} />
+    <GlobalFooter lang={locale} />
+    </>
+    
+  )
 }
