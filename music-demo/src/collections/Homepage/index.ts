@@ -21,6 +21,10 @@ export const Homepage: CollectionConfig = {
       defaultLimit: 1,
     },
   },
+  labels: {
+    plural: "Homepage",
+    singular: "Homepage"
+  },
   defaultPopulate: {
     news: true,
   },

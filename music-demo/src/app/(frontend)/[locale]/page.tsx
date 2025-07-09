@@ -27,9 +27,9 @@ export default async function Homepage({ params }: { params: { locale: string} }
       },
     },
     locale: locale, // Pass the locale here
-  fallbackLocale: 'en', // Optional: specify fallback
+    fallbackLocale: 'en', // Optional: specify fallback
   })
-  console.log(homepage)
+
   const slides: any = homepage.docs[0]?.hero
   const posts: any = homepage.docs[0]?.newsSection
   const video: any = homepage.docs[0]?.videoSection

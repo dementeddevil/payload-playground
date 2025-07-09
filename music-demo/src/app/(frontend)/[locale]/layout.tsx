@@ -3,6 +3,7 @@ import './assets/css/styles.scss'
 import Header from './components/Header'
 
 import { Roboto } from 'next/font/google'
+import GlobalFooter from '@/globals/Footer/Component'
 const roboto = Roboto({
   subsets: ['latin'],
 })
@@ -32,7 +33,9 @@ export default function RootLayout({
             {/* <footer className="site-footer">
               <span>&copy; 2025 Music Demo</span>
             </footer> */}
+            <GlobalFooter />
           </div>
+          
         </div>
       </body>
     </html>

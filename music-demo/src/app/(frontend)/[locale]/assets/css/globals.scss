@@ -75,6 +75,7 @@ a {
 
   iframe,
   & > div {
+    border: none;
     position: absolute;
     top: 0;
     left: 0;
@@ -88,9 +89,20 @@ a {
 
 .site-footer {
   background: #333;
-  color: #fff;
+  color: #ccc;
   padding: 20px 30px;
-  font-size: 14px;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  &__list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  &__list-item {
+    display: inline-block;
+    margin-left: 20px;
+  }
 }
 
 

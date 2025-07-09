@@ -1,5 +1,4 @@
 export default function ShowReel(props: any) {
-  console.log('showreel', props);
 
   return (
     <section className="section section--alt">

@@ -1,7 +1,6 @@
 import Link from 'next/link'
 
 export default function LatestNews(props: any) {
-  console.log('latest news', props);
   return (
     <section className="section">
       <div className="section__header">

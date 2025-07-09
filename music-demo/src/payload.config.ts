@@ -6,18 +6,17 @@ import path from 'path'
 import { buildConfig, PayloadRequest } from 'payload'
 import { fileURLToPath } from 'url'
 
-import { Categories } from './collections/Categories'
 import { Media } from './collections/Media'
 import { Homepage } from './collections/Homepage'
 import { Pages } from './collections/Pages'
 import { Posts } from './collections/Posts'
 import { Artists } from './collections/Artists'
 import { Users } from './collections/Users'
-import { Footer } from './Footer/config'
-import { Header } from './Header/config'
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
+import { Navigation } from './globals/Navigation/config'
+import { Footer } from './globals/Footer/config'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -86,9 +85,9 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.DATABASE_URI || '',
   }),
-  collections: [Pages, Posts, Artists, Media, Categories, Users, Homepage],
+  globals: [Navigation, Footer],
+  collections: [Homepage, Posts, Artists, Pages, Media, Users ],
   cors: [getServerSideURL()].filter(Boolean),
-  globals: [Header, Footer],
   plugins: [
     ...plugins,
     // storage-adapter-placeholder

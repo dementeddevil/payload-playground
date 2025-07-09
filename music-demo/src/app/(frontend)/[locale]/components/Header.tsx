@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import logo from '../assets/img/universal-logo.png'
 import Link from "next/link";
-import PrimaryNav from './PrimaryNav';
+import Navigation from '@/globals/Navigation/Component';
 
 
 export default function Header() {
@@ -14,7 +14,7 @@ export default function Header() {
           height={69}
         />
       </Link>
-      <PrimaryNav />
+      <Navigation />
     </header>
   )
 }

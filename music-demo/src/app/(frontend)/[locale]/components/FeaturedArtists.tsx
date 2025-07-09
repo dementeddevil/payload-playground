@@ -1,7 +1,6 @@
 import Link from 'next/link'
 
 export default function FeaturedArtist(props: any) {
-  console.log('latest artists', props);
   return (
     <section className="section">
       <div className="section__header">
