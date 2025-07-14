@@ -6,8 +6,8 @@ import FeaturedArtists from './components/FeaturedArtists'
 import { getPayloadClient } from '@/payload/getPayloadClient'
 import GlobalFooter from '@/globals/Footer/Component'
 
-export default async function Homepage({ params }: { params: { locale: string} }) {
-  const { locale } = await params;
+export default async function Homepage({ params }: { params: { locale: string } }) {
+  const { locale } = await params
   const payload = await getPayloadClient()
   const homepage = await payload.find({
     collection: 'homepage',
@@ -40,9 +40,9 @@ export default async function Homepage({ params }: { params: { locale: string} }
     <>
       <Hero slides={slides} />
       <LatestNews posts={posts} />
-      <ShowReel video={video}/>
+      <ShowReel video={video} />
       <FeaturedArtists artists={artists} />
-      <GlobalFooter lang={params.locale} />
+      <GlobalFooter lang={locale} />
     </>
   )
 }

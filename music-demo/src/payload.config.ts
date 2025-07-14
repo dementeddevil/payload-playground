@@ -17,7 +17,6 @@ import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
 import { Navigation } from './globals/Navigation/config'
 import { Footer } from './globals/Footer/config'
-import { Auth } from './globals/Auth/config'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -86,7 +85,7 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.DATABASE_URI || '',
   }),
-  globals: [Navigation, Footer /*, Auth*/],
+  globals: [Navigation, Footer],
   collections: [Homepage, Posts, Artists, Pages, Media, Users],
   cors: [getServerSideURL()].filter(Boolean),
   plugins: [
