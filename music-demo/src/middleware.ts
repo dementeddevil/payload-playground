@@ -44,3 +44,16 @@ export const config = {
     "/((?!api|admin|_next/static|_next/image|favicon.ico).*)",
   ],
 };
+
+/* TODO: Need to merge this middleware with the logic required by the authentication logic
+
+import NextAuth from 'next-auth';
+import { authConfig } from './auth.config';
+
+export const { auth: middleware } = NextAuth(authConfig)
+
+export const config = {
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|admin/login).*)']
+}
+
+*/
