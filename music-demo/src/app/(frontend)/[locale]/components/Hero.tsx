@@ -1,4 +1,5 @@
 export default function Hero(props: any) {
+  if (props.slides === undefined || props.slides.length === 0) return
   return (
     <section className="hero">
       <div className="hero__slide">

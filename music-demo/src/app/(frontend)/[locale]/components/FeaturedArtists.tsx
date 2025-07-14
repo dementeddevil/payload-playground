@@ -1,6 +1,8 @@
 import Link from 'next/link'
 
 export default function FeaturedArtist(props: any) {
+  if (props.artists === undefined) return
+
   return (
     <section className="section">
       <div className="section__header">

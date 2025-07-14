@@ -1,6 +1,7 @@
 import Link from 'next/link'
 
 export default function LatestNews(props: any) {
+  if (props.posts === undefined) return
   return (
     <section className="section">
       <div className="section__header">
