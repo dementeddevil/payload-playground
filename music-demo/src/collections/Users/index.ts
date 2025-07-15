@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { auth, signOut } from '@/auth'
 
 import { authenticated } from '../../access/authenticated'
 import { isAdmin, isAdminFieldLevel } from '@/access/isAdmin'
@@ -20,8 +21,14 @@ export const Users: CollectionConfig = {
     defaultColumns: ['name', 'email'],
     useAsTitle: 'email',
   },
-  auth: { depth: 0},
+  auth: true,
   fields: [
+    {
+      name: 'email',
+      type: 'email',
+      required: true,
+      unique: true,
+    },
     {
       type: 'row',
       fields: [
@@ -62,7 +69,16 @@ export const Users: CollectionConfig = {
           label: 'Local Editor',
           value: 'localEditor',
         },
-      ]
+      ],
+    },
+    {
+      name: 'accounts',
+      type: 'array',
+      collection: 'accounts',
+      on: 'users',
+      admin: {
+        defaultColumns: ['id', 'type', 'provider'],
+      },
     },
     {
       name: 'locales',
@@ -92,7 +108,7 @@ export const Users: CollectionConfig = {
         {
           label: 'Spanish',
           value: 'es',
-        }
+        },
       ],
     },
   ],
