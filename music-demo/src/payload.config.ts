@@ -11,7 +11,6 @@ import { Homepage } from './collections/Homepage'
 import { Pages } from './collections/Pages'
 import { Posts } from './collections/Posts'
 import { Artists } from './collections/Artists'
-import { Accounts } from './collections/Accounts'
 import { Users } from './collections/Users'
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
@@ -57,7 +56,7 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
-    user: Users.slug,
+    user: 'users',
     livePreview: {
       breakpoints: [
         {
@@ -87,7 +86,7 @@ export default buildConfig({
     url: process.env.DATABASE_URI || '',
   }),
   globals: [Navigation, Footer],
-  collections: [Homepage, Posts, Artists, Pages, Media, Accounts, Users],
+  collections: [Homepage, Posts, Artists, Pages, Media, Users],
   cors: [getServerSideURL()].filter(Boolean),
   plugins: [
     ...plugins,

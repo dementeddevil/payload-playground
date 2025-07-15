@@ -1,7 +1,5 @@
 import { withPayload } from '@payloadcms/next/withPayload'
 
-
-
 const NEXT_PUBLIC_SERVER_URL = process.env.VERCEL_PROJECT_PRODUCTION_URL
   ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
   : undefined || process.env.__NEXT_PRIVATE_ORIGIN || 'http://localhost:3000'
@@ -20,7 +18,10 @@ const nextConfig = {
       }),
     ],
   },
-  reactStrictMode: true
+  reactStrictMode: true,
+  experimental: {
+    nodeMiddleware: true,
+  },
 }
 
 export default withPayload(nextConfig, { devBundleServerPackages: false })

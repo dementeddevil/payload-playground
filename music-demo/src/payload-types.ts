@@ -72,7 +72,6 @@ export interface Config {
     artists: Artist;
     pages: Page;
     media: Media;
-    accounts: Account;
     users: User;
     'payload-jobs': PayloadJob;
     'payload-locked-documents': PayloadLockedDocument;
@@ -86,7 +85,6 @@ export interface Config {
     artists: ArtistsSelect<false> | ArtistsSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
-    accounts: AccountsSelect<false> | AccountsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -361,9 +359,7 @@ export interface User {
   emailVerified?: string | null;
   name?: string | null;
   image?: string | null;
-  firstName: string;
-  lastName: string;
-  roles?: ('admin' | 'editor' | 'localEditor')[] | null;
+  permissions?: ('admin' | 'editor' | 'localEditor')[] | null;
   locales?: ('en' | 'fr' | 'de' | 'es')[] | null;
   accounts?:
     | {
@@ -466,21 +462,6 @@ export interface Page {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "accounts".
- */
-export interface Account {
-  id: string;
-  type: string;
-  provider: string;
-  providerAccountId: string;
-  refreshToken?: string | null;
-  accessToken?: string | null;
-  user: string | User;
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -600,10 +581,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: string | Media;
-      } | null)
-    | ({
-        relationTo: 'accounts';
-        value: string | Account;
       } | null)
     | ({
         relationTo: 'users';
@@ -938,20 +915,6 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "accounts_select".
- */
-export interface AccountsSelect<T extends boolean = true> {
-  type?: T;
-  provider?: T;
-  providerAccountId?: T;
-  refreshToken?: T;
-  accessToken?: T;
-  user?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
@@ -960,9 +923,7 @@ export interface UsersSelect<T extends boolean = true> {
   emailVerified?: T;
   name?: T;
   image?: T;
-  firstName?: T;
-  lastName?: T;
-  roles?: T;
+  permissions?: T;
   locales?: T;
   accounts?:
     | T

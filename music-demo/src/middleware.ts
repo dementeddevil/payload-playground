@@ -39,9 +39,10 @@ export default auth(async function middleware(request: NextRequest) {
 })
 
 export const config = {
+  runtime: 'nodejs',
   matcher: [
     // Skip all internal paths (_next)
-    '/((?!api|admin|_next/static|_next/image|favicon.ico).*)',
+    '/((?!api|admin|_next/static|_next/image|favicon.ico|admin/login).*)',
   ],
 }
 

@@ -1,7 +1,4 @@
 import type { CollectionConfig } from 'payload'
-import { auth, signOut } from '@/auth'
-
-import { authenticated } from '../../access/authenticated'
 import { isAdmin, isAdminFieldLevel } from '@/access/isAdmin'
 import { isAdminOrSelf } from '@/access/isAdminOrSelf'
 
@@ -24,38 +21,10 @@ export const Users: CollectionConfig = {
   auth: true,
   fields: [
     {
-      name: 'email',
-      type: 'email',
-      required: true,
-      unique: true,
-    },
-    {
-      type: 'row',
-      fields: [
-        {
-          name: 'firstName',
-          type: 'text',
-          required: true,
-        },
-        {
-          name: 'lastName',
-          type: 'text',
-          required: true,
-        },
-      ],
-    },
-    {
-      name: 'roles',
-      // Save this field to JWT so we can use from `req.user`
-      saveToJWT: true,
+      name: 'permissions',
       type: 'select',
       hasMany: true,
-      defaultValue: ['editor'],
-      access: {
-        // Only admins can create or update a value for this field
-        create: isAdminFieldLevel,
-        update: isAdminFieldLevel,
-      },
+      saveToJWT: true,
       options: [
         {
           label: 'Admin',
@@ -70,15 +39,6 @@ export const Users: CollectionConfig = {
           value: 'localEditor',
         },
       ],
-    },
-    {
-      name: 'accounts',
-      type: 'array',
-      collection: 'accounts',
-      on: 'users',
-      admin: {
-        defaultColumns: ['id', 'type', 'provider'],
-      },
     },
     {
       name: 'locales',
