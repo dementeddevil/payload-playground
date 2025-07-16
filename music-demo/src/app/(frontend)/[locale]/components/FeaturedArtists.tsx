@@ -18,7 +18,7 @@ export default function FeaturedArtist(props: any) {
               <Link href={`/artists/${item.slug}`}>
                 <div
                   className="card__bg"
-                  style={{ ['backgroundImage' as any]: `url(${item.thumbnailImage.url})` }}
+                  style={{ ['backgroundImage' as any]: `url(${item.thumbnailImage?.url})` }}
                 ></div>
                 <div className="card__content">
                   <h3>{item.title}</h3>

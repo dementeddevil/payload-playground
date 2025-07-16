@@ -15,7 +15,7 @@ import GlobalFooter from '@/globals/Footer/Component'
 export const dynamic = 'force-static'
 export const revalidate = 600
 
-export default async function Page({ params }: { params: { locale: string} }) {
+export default async function Page({ params }: { params: { locale: string } }) {
   const payload = await getPayloadClient()
 
   const posts = await payload.find({
@@ -33,47 +33,46 @@ export default async function Page({ params }: { params: { locale: string} }) {
 
   return (
     <>
-    <section className="section">
-      <div className="section__header">
-        <div className="section__title section__title--top">
-          <h2>Latest News.</h2>
-          <p>Our latest news from around the globe. </p>
-        </div>
-      </div>
-      <div className="section__content">
-        <div className="section__search">
-          <div className="search-bar">
-            <input type="text" placeholder="Search news" />
-            <BiSearch />
+      <section className="section">
+        <div className="section__header">
+          <div className="section__title section__title--top">
+            <h2>Latest News.</h2>
+            <p>Our latest news from around the globe. </p>
           </div>
-          <PageRange
-            collection="posts"
-            currentPage={posts.page}
-            limit={12}
-            totalDocs={posts.totalDocs}
-          />
         </div>
-        <ul className="cards-list">
-          {posts.docs.map((item: any) => (
-            <li className="card" key={item.id}>
-              <Link href={`/posts/${item.slug}`}>
-                <div
-                  className="card__bg"
-                  style={{ ['backgroundImage' as any]: `url(${item.thumbnailImage.url})` }}
-                ></div>
-                <div className="card__content">
-                  <h3>{item.title}</h3>
-                  <p>{item.excerpt}</p>
-                </div>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
-    <GlobalFooter lang={params.locale} />
+        <div className="section__content">
+          <div className="section__search">
+            <div className="search-bar">
+              <input type="text" placeholder="Search news" />
+              <BiSearch />
+            </div>
+            <PageRange
+              collection="posts"
+              currentPage={posts.page}
+              limit={12}
+              totalDocs={posts.totalDocs}
+            />
+          </div>
+          <ul className="cards-list">
+            {posts.docs.map((item: any) => (
+              <li className="card" key={item.id}>
+                <Link href={`/posts/${item.slug}`}>
+                  <div
+                    className="card__bg"
+                    style={{ ['backgroundImage' as any]: `url(${item.thumbnailImage?.url})` }}
+                  ></div>
+                  <div className="card__content">
+                    <h3>{item.title}</h3>
+                    <p>{item.excerpt}</p>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+      <GlobalFooter lang={params.locale} />
     </>
-    
   )
 }
 
