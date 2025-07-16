@@ -57,6 +57,22 @@ export const authConfig: NextAuthConfig = {
   adapter: MongoDBAdapter(client, {
     databaseName: 'payload-playground-auth',
   }),
+  session: {
+    strategy: 'jwt',
+  },
+  callbacks: {
+    jwt({ token, user }) {
+      if (user) {
+        token.id = user.id
+        token.permissions = user?.permissions ?? []
+      }
+      return token
+    },
+    session({ session, token }) {
+      session.user.permissions = token.permissions
+      return session
+    },
+  },
   debug: true,
   logger: {
     error(code, ...message) {
